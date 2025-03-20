@@ -7,9 +7,9 @@
  * @package           Wow_Snippets
  *
  * @wordpress-plugin
- * Plugin Name:       WOW Snippets (free snippets for WooCommerce)
+ * Plugin Name:       WOW Snippets - Code Snippet Manager
  * Plugin URI:        https://wowwp.com/wow-snippets
- * Description:       Useful code snippets to help you customize WooCommerce.
+ * Description:       Lightweight code snippet manager with 200+ code snippets to customize WordPress & WooCommerce.
  * Version:           1.0.0
  * Author:            WOW WP
  * Author URI:        https://wowwp.com/

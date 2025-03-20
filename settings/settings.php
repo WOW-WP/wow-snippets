@@ -27,9 +27,27 @@ class WOWSNIPPETS_Settings {
             'WOW Snippets',
             'manage_options',
             'wowsnippets-settings',
-            [$this, 'render_settings_page'],
+            [$this, 'render_all_snippets_page'],
             'dashicons-admin-generic',
             99
+        );
+
+        add_submenu_page(
+            'wowsnippets-settings',
+            'All Snippets',
+            'All Snippets',
+            'manage_options',
+            'wowsnippets-settings',
+            [$this, 'render_all_snippets_page']
+        );
+
+        add_submenu_page(
+            'wowsnippets-settings',
+            'Settings',
+            'Settings',
+            'manage_options',
+            'wowsnippets-settings-settings',
+            [$this, 'render_settings_page']
         );
     }
 
@@ -38,22 +56,31 @@ class WOWSNIPPETS_Settings {
         register_setting('wowsnippets_settings_group', 'wowsnippets_settings_data');
     }
 
-    // Enqueue Tailwind CSS only on this settings page
+    // Enqueue Tailwind CSS on all plugin pages
     public function enqueue_admin_styles($hook) {
-        if ($hook !== 'toplevel_page_wowsnippets-settings') {
-            return;
+        $plugin_pages = [
+            'toplevel_page_wowsnippets-settings',
+            'wow-snippets_page_wowsnippets-settings-settings'
+        ];
+
+        if (in_array($hook, $plugin_pages)) {
+            wp_enqueue_style(
+                'tailwind-css',
+                'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
+                [],
+                '2.2.19'
+            );
         }
-        wp_enqueue_style(
-            'tailwind-css',
-            'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
-            [],
-            '2.2.19'
-        );
     }
 
     // Render the settings page
     public function render_settings_page() {
         include plugin_dir_path(__FILE__) . 'settings-template.php';
+    }
+
+    // Render the all snippets page
+    public function render_all_snippets_page() {
+        echo '<div class="wrap"><h1>All Snippets</h1></div>';
     }
 }
 
